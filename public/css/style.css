@@ -1,0 +1,19 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    font-size: 48px;
+}
+
+.expensive {
+    color: red;
+}
+
+.cheap {
+    color: green;
+}
+
+.average {
+    color: orange;
+}
