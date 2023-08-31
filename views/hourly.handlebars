@@ -1,3 +1,6 @@
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
 <h1>Sähkön tuntihinnat seuraavalle 24 tunnille</h1>
 
 <table>
@@ -5,8 +8,36 @@
         <th>Tunti</th>
         <th>Hinta(snt/kWh)</th>
     </tr>
+    {{#each tableData}}
     <tr>
         <td>{{hour}}</td>
         <td>{{price}}</td>
     </tr>
+    {{/each}}
 </table>
+
+{{!-- Create an element to place the chart object --}}
+<canvas id="hourlyChart"width="400" height="400"></canvas>
+
+<script>
+const xValues = ["13,00", "14,00", "15,00", "16,00", "17,00", "18,00", "19,00", "20,00", "21,00"];
+const yValues = [10, 19, 3, 5, 2, 3, 5, 10, 15];
+const barColors = ["#blue", "#red", "#green", "#yellow", "#purple", "#orange", "#blue", "#red", "#green"];
+
+new Chart("hourlyCharts", {
+    type: "bar",
+    data: {
+        labels: xValues,
+        datasets: {
+            backgroundColor: barColors,
+            data: yValues}]
+        },
+        options: {
+            legend: { display: true},
+            labels: {color: 'red', text: 'Kallista'}
+            title: {display: true, text: "Hourly electricity prices"
+            }
+        }
+    });
+</script>
+
