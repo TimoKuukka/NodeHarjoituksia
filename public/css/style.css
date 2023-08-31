@@ -1,3 +1,4 @@
+/* Common settings for the whole page are defined in the body */
 body {
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -6,6 +7,7 @@ h1 {
     font-size: 48px;
 }
 
+/* CSS classes for colors describing prices */
 .expensive {
     color: red;
 }
@@ -16,4 +18,32 @@ h1 {
 
 .average {
     color: orange;
+}
+
+/* Table settings */
+table {
+    border-radius: 8px; /* Rounded corners */
+    border-collapse: separate; /* Separate borders */
+    border-spacing: 0; /* Small spacing between table cells */
+    border: 1px solid #ddd; /* Gray border */
+
+    /* Prevent table data and header background color exceeding table boundaries */
+    /* This is needed because table has rounded corners */
+    overflow: hidden;
+
+}
+
+/* set every other row (even) with selected background color */
+tr:nth-child(even) {
+        background-color: #998484;
+    }
+
+th {
+    color: #ddd;
+    background-color: #0c9e9e;
+    padding: 8px;
+}
+
+td {
+    padding: 8px;
 }
