@@ -18,7 +18,7 @@ const pool = new Pool({
   user: 'postgres', // In production allways create a new user for the app
   password: 'Q2werty',
   host: 'localhost', // Or localhost or 127.0.0.1 if in the same computer
-  database: 'smarthome',
+  database: 'smarthome2',
   port: 5432
 });
 
