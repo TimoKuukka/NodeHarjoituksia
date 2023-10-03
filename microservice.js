@@ -41,6 +41,8 @@ cron.schedule('*/5 15 * * *', () => {
     // If the date of last successful fetch is not the current day, fetch data
     if (lastFetchedDate != dateStr) {
       message = 'Started fetching price data'
+      
+      // Log event to a console and a log file
       console.log(message);
       logger.add2log(message, logFile)
       getPrices.fetchLatestPriceData().then((json) => {
@@ -51,6 +53,7 @@ cron.schedule('*/5 15 * * *', () => {
 
           // Build a SQL clauset to insert values into table
           const sqlClause = 'INSERT INTO public.hourly_price VALUES ($1, $2) ON CONFLICT DO NOTHING RETURNING *'; 
+          
           // Function for running SQL operations asyncronously
           const runQuery = async () => {
             let resultset = await pool.query(sqlClause, values);
@@ -58,12 +61,16 @@ cron.schedule('*/5 15 * * *', () => {
           }
           // Call query function and echo results to console
           runQuery().then((resultset) => {
+
+          // if there is already a price for the timeslot, row is empty ie. undefined
             if (resultset.rows[0] != undefined ) {
               message = 'Added a row'
             }
             else {
-              message = 'Skipped an existing row'
+              message = 'Skipped an existing row' // The message when undefined
             }
+
+            // Log event to a console and a log file
             console.log(message);
             logger.add2log(message, logFile)
 
@@ -72,14 +79,20 @@ cron.schedule('*/5 15 * * *', () => {
         });
       });
       lastFetchedDate = dateStr; // Set fetch date to current date
+      
+      // Log when the data was fetched
       message = 'Fetched at ' + lastFetchedDate;
       console.log(message)
       logger.add2log(message, logFile)
     } else {
+
+      // Log if data has been retrieved earlier at the same day
       message = 'Next scheduled event: Data has been successfully retrieved earlier today'
       console.log(message);
       logger.add2log(message, logFile)
     }
+
+    // Log an error if the data could not be retrieved
   } catch (error) {
     message = 'An error occurred (' + error.toString() + '), trying again in 5 minutes until 4 PM';
     console.log(message)
