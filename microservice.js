@@ -37,6 +37,7 @@ cron.schedule('*/5 15 * * *', () => {
     // If the date of last sucessfull fetch is not the current day, fetch data
     if (lastFethcedDate != dateStr) {
       console.log('Started fething price data ');
+      // TODO: add this entry to the log file
       getPrices.fetchLatestPriceData().then((json) => {
 
         //loop trough prices data and pick starDate and price elements
@@ -52,14 +53,20 @@ cron.schedule('*/5 15 * * *', () => {
           }
           // Call queryfunction and echo results to console
           runQuery().then((resultset) => console.log(resultset.rows[0]))
+          // TODO: add this entry to the log file
         });
       });
       lastFethcedDate = dateStr; // Set fetch date to current date
       console.log('Fethed at', lastFethcedDate)
+      // TODO: add this entry to the log file
     } else {
       console.log('Data has been successfully retrieved earlier today');
+      // TODO: add this entry to the log file
     }
   } catch (error) {
-    console.log('An error occurred, trying again in 5 minutes until 4 PM');
+    console.log('An error() occurred, trying again in 5 minutes until 4 PM');
+    // TODO: add this entry and the error message to the log file
   }
 });
+
+// TODO: Create a function to do this ie. create log message and timestamp.
