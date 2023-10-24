@@ -2,6 +2,11 @@
 //                               JAVASCRIPT HARJOITUKSIA
 // ====================================================================================
 
+// LIBRARIES
+// ====================================================================================
+
+const mathjs = require('mathjs');
+
 /* HARJOITUS 1 - YKSINKERTAISET TIETOTYYPIT
 Tallennamme tietoja henkilöstä. Mieti, mitkä tiedot ovat muuttuvia ja mitkä pysyviä ja 
 päätä sen perusteella, millä komennolla määrittelet muuttujan.
@@ -121,7 +126,36 @@ console.log(ohjelmoija2.nimi + " keskiarvo: " + ohjelmoija2.laskeKeskiarvo());
 
 // ====================================================================================
 
-/* HARJOITUS 6
+
+/* Harjoitus 6 luo funktio, joka laskee vektorin alkioiden keskihajonnan perinteisellä tavalla
+*/
+
+function stdDeviation(array, decimals) {
+    const deviation = mathjs.std(array);
+    const roundedDev = mathjs.round(deviation, decimals);
+    return rounded;
+}
+
+/* Harjoitus 7 Muuta edellisen harjoituksen funktio ES6-muotoon
+*/
+
+const stdDeviation = (array, decimals) => {
+    const deviation = mathjs.std(array);
+    const roundedDev = mathjs.round(deviation, decimals);
+    return rounded;
+}
+
+/* Harjoitus 8 Määrittele luokka, jossa on metodit keskiarvon,
+keskihajonnan ja varianssin, suurimman ja pienimmän arvon laskemiseksi
+argumenttina annetusta vektorista. */
+
+
+
+
+
+
+
+/* HARJOITUS 9
 Tee edellisen tehtävän luokasta CJS kirjasto ja anna se muiden ohjelmien käyttöön export-komennolla
 Luo node.js-ohjelma, jossa luokasta luodaan 5 oliota ja tallennetaan ne vektoriin.
 */
