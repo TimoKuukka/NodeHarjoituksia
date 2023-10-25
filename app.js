@@ -42,7 +42,8 @@ app.get('/', (req, res) => {
     };
 
     cprice.getCurrentPrice().then((resultset) => {
-        homePageData.price = (resultset.rows[0])
+        console.log(resultset.rows[0])
+        // FIXME: in database "hinta" on index.handlebars "price"
         homePageData.price = (resultset.rows[0])
     })
 
