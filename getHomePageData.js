@@ -2,6 +2,9 @@
 // ==========================================================
 
 // LIBRARIES AND MODULES
+// ---------------------
+
+// The pg-pool library for PostgreSQL Server
 const Pool = require('pg').Pool;
 
 // DATABASE SETTINGS
