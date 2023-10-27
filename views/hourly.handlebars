@@ -5,11 +5,13 @@
 
 <table>
     <tr>
+        <th>Päivä</th>
         <th>Tunti</th>
         <th>Hinta(snt/kWh)</th>
     </tr>
     {{#each tableData}}
     <tr>
+        <td>{{day}}</td>
         <td>{{hour}}</td>
         <td>{{price}}</td>
     </tr>
@@ -35,8 +37,7 @@ new Chart("hourlyCharts", {
         options: {
             legend: { display: true},
             labels: {color: 'red', text: 'Kallista'}
-            title: {display: true, text: "Hourly electricity prices"
-            }
+            title: {display: true, text: "Hourly electricity prices"}
         }
     });
 </script>
