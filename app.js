@@ -12,6 +12,9 @@ const { engine } = require('express-handlebars');
 // Home made module to get current price
 const cprice = require('./getHomePageData');
 
+// Home made module to get hourly price data
+const cpriceTable = require('./getHourlyPageData');
+
 
 // EXPRESS APPLICATION SETTINGS
 // ----------------------------
@@ -52,33 +55,22 @@ app.get('/', (req, res) => {
 
 });
 
-// Route to hourly data page
+
+// Route to hourly price page
+// --------------------------
+
 app.get('/hourly', (req, res) => {
 
     // Data will be presented in a table. To loop all rows we need a key for table and for column data
-    let hourlyPageData = {
-        'tableData': [
-            {
-                'hour': 13,
-                'price': 31.44
-            },
-            {
-                'hour': 14,
-                'price': 32.10
-            },
-            {
-                'hour': 15,
-                'price': 30.50
-            },
-            {
-                'hour': 16,
-                'price': 29.99
-            }
-        ]
-    };
-
-    res.render('hourly', hourlyPageData)
-
+    cpriceTable.getCurrentPriceTable().then((resultset) => {
+        let tableData = resultset.rows
+        let hourlyPageData = {
+            'tableData': tableData
+        };
+        //console.log(hourlyPageData)  -- turhake, näkee vain mitä mitä palauttaa
+        res.render('hourly', hourlyPageData)
+    })
+    
 });
 
 // Route to hourly chart page
@@ -95,7 +87,7 @@ app.get('/chart', (req, res) => {
 
 });
 
-app.get('/test', (req, res) => {
+app.get('/graph', (req, res) => {
 
     // Data will be presented in a bar chart. Data will be sent as JSON array
     let tableHours = [12, 13, 14, 15, 16];
@@ -104,7 +96,7 @@ app.get('/test', (req, res) => {
     let jsonTablePrices = JSON.stringify(tablePrices)
     let chartPageData = { 'hours': jsonTableHours, 'prices': jsonTablePrices };
 
-    res.render('testCJSv4', chartPageData)
+    res.render('graph', chartPageData)
 
 });
 
