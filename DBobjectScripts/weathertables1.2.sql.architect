@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<architect-project version="1.0" appversion="1.0.9">
+ <project-name>weathertables1.2.sql</project-name>
+ <print-settings numCopies="1" zoom="1.0" pageNumbersPrinted="true" orientation="1" paperWidth="612.0" paperHeight="792.0" leftBorder="50.0" rightBorder="50.0" topBorder="50.0" bottomBorder="50.0" />
+ <project-data-sources>
+  <data-source id="DS0">
+   <property key="Logical" value="PlayPen Database" />
+  </data-source>
+  <data-source id="DS2">
+   <property key="Connection Type" value="PostgreSQL" />
+   <property key="Logical" value="smarthome" />
+   <property key="JDBC URL" value="jdbc:postgresql://localhost:5432/smarthome" />
+   <property key="UID" value="postgres" />
+   <property key="PWD" value="Q2werty" />
+   <property key="ca.sqlpower.architect.etl.kettle.database" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.port" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.hostname" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.login" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.password" value="" />
+  </data-source>
+ </project-data-sources>
+ <source-databases>
+  <database id="DB0" populated="true" UUID="fb462080-f47c-4996-823a-5a57687b5e1b" dbcs-ref="DS2" name="smarthome" physicalName="smarthome" >
+   <catalog id="CAT1" populated="true" UUID="57c1c0fb-4879-4205-b0b8-76b39ff08338" name="smarthome" nativeTerm="database" physicalName="smarthome" >
+    <schema id="SCH2" populated="true" UUID="29fffbee-2654-4579-9101-d38725d144c1" name="information_schema" nativeTerm="schema" physicalName="information_schema" >
+    </schema>
+    <schema id="SCH3" populated="true" UUID="5bc0288e-166f-4109-9df2-ac016763d166" name="pg_catalog" nativeTerm="schema" physicalName="pg_catalog" >
+    </schema>
+    <schema id="SCH4" populated="true" UUID="3537a94e-f7ef-4ed6-b0aa-742cec97a2f3" name="public" nativeTerm="schema" physicalName="public" >
+     <table id="TAB5" populated="true" UUID="1a382b77-9b15-40f2-8264-09d3551c1b25" name="hourly_price" objectType="TABLE" physicalName="hourly_price" >
+      <remarks>This table will store electricity prices by hour</remarks>
+      <folder id="FOLTAB51" populated="true" name="Columns" physicalName="Columns" type="1">
+       <column id="COL6" populated="true" UUID="29d2183f-b438-4459-a116-34666d38c6a5" autoIncrement="false" name="timeslot" nullable="0" physicalName="timeslot" precision="35" primaryKeySeq="0" referenceCount="1" scale="6" sourceDataTypeName="timestamptz" type="93" >
+        <remarks></remarks>
+       </column>
+       <column id="COL7" populated="true" UUID="1b8b45d9-76eb-4ab4-b08c-3dd924c310e6" autoIncrement="false" name="price" nullable="0" physicalName="price" precision="8" referenceCount="1" scale="8" sourceDataTypeName="float4" type="7" >
+        <remarks></remarks>
+       </column>
+       </folder>
+       <folder id="FOLTAB53" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+       </folder>
+       <folder id="FOLTAB52" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+       </folder>
+       <folder id="FOLTAB54" populated="true" name="Indices" physicalName="Indices" type="4">
+       <index id="IDX8" populated="true" UUID="9ec13f14-dad9-48f7-97d6-d471c96919a6" clustered="false" name="hourly_price_pk" physicalName="hourly_price_pk" primaryKeyIndex="true" unique="true" >
+        <index-column id="IDC9" populated="true" UUID="a49e153d-c055-4328-8e38-5513807d7674" ascendingOrDescending="UNSPECIFIED" column-ref="COL6" name="timeslot" physicalName="timeslot" />
+       </index>
+      </folder>
+     </table>
+     <table id="TAB10" populated="false" UUID="91657d2f-2192-4535-a66d-232cd3252b17" name="month_name_lookup" objectType="TABLE" physicalName="month_name_lookup" >
+      <remarks>Gives a month name by number</remarks>
+      <folder id="FOLTAB101" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX11" populated="true" UUID="7bb7ee08-81a1-465a-a59f-0703bd49425a" clustered="false" name="month_name_lookup_pk" physicalName="month_name_lookup_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB12" populated="false" UUID="65eaf47a-3339-4894-bbd8-72a373e15442" name="weekday_lookup" objectType="TABLE" physicalName="weekday_lookup" >
+      <remarks>Allows weekday lookup with several languages</remarks>
+      <folder id="FOLTAB121" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX13" populated="true" UUID="3a10a151-7605-406e-aea7-dc0a5d967a80" clustered="false" name="weekday_lookup_pk" physicalName="weekday_lookup_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB14" populated="false" UUID="9e7fd541-1816-40e7-bf1e-5ec7497f4692" name="average_by_weekday_number" objectType="VIEW" physicalName="average_by_weekday_number" >
+      <remarks>Calculates an average for each weekday using ISO- weekday number </remarks>
+      <folder id="FOLTAB141" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX15" populated="true" UUID="1542914b-5241-4e2e-8663-2d7960acd2ca" clustered="false" name="average_by_weekday_number_pk" physicalName="average_by_weekday_number_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB16" populated="false" UUID="95f687d0-694d-4edb-959f-66d0a3edfbe5" name="average_by_year" objectType="VIEW" physicalName="average_by_year" >
+      <remarks>Average electricity prices on yearly basis</remarks>
+      <folder id="FOLTAB161" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX17" populated="true" UUID="1cf8a50c-d99b-4566-a766-9d596f282cc3" clustered="false" name="average_by_year_pk" physicalName="average_by_year_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB18" populated="false" UUID="696cd3b5-5200-4248-8ba2-7b521d478185" name="average_by_year_and_month" objectType="VIEW" physicalName="average_by_year_and_month" >
+      <remarks>Calculates average electricity prices for year-month basis</remarks>
+      <folder id="FOLTAB181" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX19" populated="true" UUID="d8d9d834-6ab1-4beb-9097-74bbd486a293" clustered="false" name="average_by_year_and_month_pk" physicalName="average_by_year_and_month_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB20" populated="false" UUID="c14854a4-cccc-4c74-be14-96479f3a3873" name="average_by_year_month_and_day" objectType="VIEW" physicalName="average_by_year_month_and_day" >
+      <remarks>Calculates average electricity prices for year-month-day basis</remarks>
+      <folder id="FOLTAB201" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX21" populated="true" UUID="e6b86c7f-0799-4a38-86f3-867095a628d4" clustered="false" name="average_by_year_month_and_day_pk" physicalName="average_by_year_month_and_day_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB22" populated="false" UUID="a40d52b7-b87c-4907-a91e-d72fcd29013e" name="avg_price_by_weekday_name" objectType="VIEW" physicalName="avg_price_by_weekday_name" >
+      <remarks></remarks>
+      <folder id="FOLTAB221" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX23" populated="true" UUID="61e940ee-daa2-4dfe-94a0-95f670b566aa" clustered="false" name="avg_price_by_weekday_name_pk" physicalName="avg_price_by_weekday_name_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB24" populated="false" UUID="6069ff93-165c-4c1f-9826-47230a5ede7e" name="current_prices" objectType="VIEW" physicalName="current_prices" >
+      <remarks>Shows electricity prices from now on</remarks>
+      <folder id="FOLTAB241" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX25" populated="true" UUID="f443ac6b-c301-48a7-a487-f439fb1b1a7d" clustered="false" name="current_prices_pk" physicalName="current_prices_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB26" populated="false" UUID="80c23edf-f573-43b2-ad9a-99f2397abc8c" name="hourly_page" objectType="VIEW" physicalName="hourly_page" >
+      <remarks></remarks>
+      <folder id="FOLTAB261" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX27" populated="true" UUID="47a773df-96c0-4f35-9bbc-787887b54cbc" clustered="false" name="hourly_page_pk" physicalName="hourly_page_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB28" populated="false" UUID="0147c577-4fbc-436c-9af7-c0ff72f5da32" name="monthly_averages_by_year_fin" objectType="VIEW" physicalName="monthly_averages_by_year_fin" >
+      <remarks>Monthly averages with Finnish month names</remarks>
+      <folder id="FOLTAB281" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX29" populated="true" UUID="e8dbd2fa-d328-44a6-8a03-52287ba65022" clustered="false" name="monthly_averages_by_year_fin_pk" physicalName="monthly_averages_by_year_fin_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB30" populated="false" UUID="f7837666-717c-4d04-8836-3507511b0932" name="previous_month_average" objectType="VIEW" physicalName="previous_month_average" >
+      <remarks></remarks>
+      <folder id="FOLTAB301" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX31" populated="true" UUID="0e10598a-c48e-4543-af23-6e451b275eda" clustered="false" name="previous_month_average_pk" physicalName="previous_month_average_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB32" populated="false" UUID="22432ffc-e83d-4e41-9747-b7e1f1d28662" name="running_average" objectType="VIEW" physicalName="running_average" >
+      <remarks>Calculates average electricity price form all rows</remarks>
+      <folder id="FOLTAB321" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX33" populated="true" UUID="dae60e3a-9a2d-49c6-8162-0cd9afca144d" clustered="false" name="running_average_pk" physicalName="running_average_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB34" populated="false" UUID="588e5667-13ce-4489-99a2-b46955eb54d2" name="running_average_stdev" objectType="VIEW" physicalName="running_average_stdev" >
+      <remarks>Calculates average electricity price and standard deviation from whole price data </remarks>
+      <folder id="FOLTAB341" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX35" populated="true" UUID="098b0f10-86a9-4712-a673-038a39c8641c" clustered="false" name="running_average_stdev_pk" physicalName="running_average_stdev_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+    </schema>
+   </catalog>
+   <relationships>
+   </relationships>
+  </database>
+ </source-databases>
+ <target-database id="ppdb" dbcs-ref="DS0">
+  <table id="TAB37" populated="true" UUID="b77f836c-8c14-48f1-bb69-b3efbc0517e1" name="Observation" objectType="TABLE" physicalName="observation" >
+   <remarks>Stores FMI weather observations in 10 minute intervals</remarks>
+   <folder id="FOLTAB371" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL38" populated="true" UUID="851d1488-6792-4279-9e41-71ef4c576e7d" autoIncrement="false" autoIncrementSequenceName="forecast_timestamp_seq" defaultValue="" name="Timestamp" nullable="0" physicalName="timestamp" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks>ISO timestamp with timezone</remarks>
+    </column>
+    <column id="COL39" populated="true" UUID="d5b01479-398b-4ccc-9098-112307793849" autoIncrement="false" autoIncrementSequenceName="forecast_place_seq" defaultValue="" name="Place" nullable="0" physicalName="place" precision="50" primaryKeySeq="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Name of weather station</remarks>
+    </column>
+    <column id="COL40" populated="true" UUID="ceb9aeb0-a5b2-45ef-a6e1-40d5691b016b" autoIncrement="false" autoIncrementSequenceName="forecast_wind_speed_seq" defaultValue="" name="WindSpeed" nullable="1" physicalName="wind_speed" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="6" userDefinedTypeUUID="7e55bcd0-7606-4153-b749-9c397f12c4d8" >
+     <remarks></remarks>
+    </column>
+    <column id="COL41" populated="true" UUID="5fc94acf-3c3a-44ee-81ad-0898534fe57e" autoIncrement="false" autoIncrementSequenceName="forecast_wind_direction_seq" defaultValue="" name="WindDirection" nullable="1" physicalName="wind_direction" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="6" userDefinedTypeUUID="7e55bcd0-7606-4153-b749-9c397f12c4d8" >
+     <remarks></remarks>
+    </column>
+    <column id="COL42" populated="true" UUID="c1c69b13-faeb-4445-a483-f5c07219ae76" autoIncrement="false" autoIncrementSequenceName="forecast_temperature_seq" defaultValue="" name="Temperature" nullable="1" physicalName="temperature" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="6" userDefinedTypeUUID="7e55bcd0-7606-4153-b749-9c397f12c4d8" >
+     <remarks></remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB373" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB372" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB374" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX43" populated="true" UUID="803edaa0-a15d-43fd-8ace-15f61e628228" clustered="false" name="observation_pk" physicalName="observation_pk" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC44" populated="true" UUID="61e40334-f13f-46b1-bd08-e10451850074" ascendingOrDescending="UNSPECIFIED" column-ref="COL38" name="Timestamp" physicalName="timestamp" />
+     <index-column id="IDC45" populated="true" UUID="c98c931d-2a91-4104-9d48-b379fe733cd8" ascendingOrDescending="UNSPECIFIED" column-ref="COL39" name="Place" physicalName="place" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB46" populated="true" UUID="9242d8b3-77db-430b-85d6-abf49a9245a7" name="Forecast" objectType="TABLE" physicalName="forecast" >
+   <remarks>FMI weather forecast for 36 hours</remarks>
+   <folder id="FOLTAB461" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL47" populated="true" UUID="38a413d3-de98-4682-8bea-183b52eafab3" autoIncrement="false" autoIncrementSequenceName="forecast_timestamp_seq_1" defaultValue="" name="Timestamp" nullable="0" physicalName="timestamp" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks>ISO timestamp with timezone</remarks>
+    </column>
+    <column id="COL48" populated="true" UUID="bca5ad75-8f29-48bb-9b1e-de575668ab7a" autoIncrement="false" autoIncrementSequenceName="forecast_place_seq_1" defaultValue="" name="Place" nullable="0" physicalName="place" precision="50" primaryKeySeq="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Name of weather station</remarks>
+    </column>
+    <column id="COL49" populated="true" UUID="ca6910b9-02f1-47ac-8f71-ef45185e03df" autoIncrement="false" autoIncrementSequenceName="forecast_wind_speed_seq_1" defaultValue="" name="WindSpeed" nullable="1" physicalName="wind_speed" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="6" userDefinedTypeUUID="7e55bcd0-7606-4153-b749-9c397f12c4d8" >
+     <remarks></remarks>
+    </column>
+    <column id="COL50" populated="true" UUID="6626a8a0-71e4-443f-a288-fc4ba423762a" autoIncrement="false" autoIncrementSequenceName="forecast_wind_direction_seq_1" defaultValue="" name="WindDirection" nullable="1" physicalName="wind_direction" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="6" userDefinedTypeUUID="7e55bcd0-7606-4153-b749-9c397f12c4d8" >
+     <remarks></remarks>
+    </column>
+    <column id="COL51" populated="true" UUID="b1a6c05d-ea32-4ced-bc58-a3ba6c320130" autoIncrement="false" autoIncrementSequenceName="forecast_temperature_seq_1" defaultValue="" name="Temperature" nullable="1" physicalName="temperature" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="6" userDefinedTypeUUID="7e55bcd0-7606-4153-b749-9c397f12c4d8" >
+     <remarks></remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB463" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB462" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB464" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX52" populated="true" UUID="1af4085b-6e02-4773-aa42-27c063ab236f" clustered="false" name="forecast_pk" physicalName="forecast_pk" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC53" populated="true" UUID="9014510c-7f14-4ab8-bf15-e360c12f74fd" ascendingOrDescending="UNSPECIFIED" column-ref="COL47" name="Timestamp" physicalName="timestamp" />
+     <index-column id="IDC54" populated="true" UUID="f9171293-e73f-4685-9c6a-632713787c0a" ascendingOrDescending="UNSPECIFIED" column-ref="COL48" name="Place" physicalName="place" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB55" populated="true" UUID="0434ea4d-b8c0-4449-a340-e4dd4779c81d" name="WeatherStation" objectType="TABLE" physicalName="weather_station" >
+   <remarks>Information about FMI weather stations</remarks>
+   <folder id="FOLTAB551" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL56" populated="true" UUID="0c361d11-5b02-4b95-9ed3-05287805fda5" autoIncrement="false" autoIncrementSequenceName="weather_station_place_seq" defaultValue="" name="Place" nullable="0" physicalName="place" precision="50" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL57" populated="true" UUID="27698695-da22-4dc3-92d2-fc697118250c" autoIncrement="false" autoIncrementSequenceName="weather_station_fmi_sid_seq" defaultValue="" name="FMISID" nullable="1" physicalName="fmi_sid" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL58" populated="true" UUID="69099e18-f36f-4ddb-9ec7-2d5e4e79da8f" autoIncrement="false" autoIncrementSequenceName="weather_station_lat_seq" defaultValue="" name="Latitude" nullable="1" physicalName="lat" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="8" userDefinedTypeUUID="4fc90970-b2e5-41dd-911c-cc605d87e7a8" >
+     <remarks></remarks>
+    </column>
+    <column id="COL59" populated="true" UUID="2e829ad5-e6e1-4c7a-ac31-f5f9531f7ea7" autoIncrement="false" autoIncrementSequenceName="weather_station_lon_seq" defaultValue="" name="Longitude" nullable="1" physicalName="lon" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="8" userDefinedTypeUUID="4fc90970-b2e5-41dd-911c-cc605d87e7a8" >
+     <remarks></remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB553" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB552" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB554" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX60" populated="true" UUID="95ccfac3-091d-46bb-8314-55d142b77b6f" clustered="false" name="weather_station_pk" physicalName="weather_station_pk" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC61" populated="true" UUID="f60a123c-a327-4eaf-8a45-f776d290de89" ascendingOrDescending="UNSPECIFIED" column-ref="COL56" name="Place" physicalName="place" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB62" populated="true" UUID="73ab2d05-8696-44bf-ade4-e5385a60b79b" name="OtherObservation" objectType="TABLE" physicalName="other_observation" >
+   <remarks></remarks>
+   <folder id="FOLTAB621" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL63" populated="true" UUID="ae9b6bbb-526e-4ca5-972a-dae705b9a760" autoIncrement="false" autoIncrementSequenceName="forecast_timestamp_seq" defaultValue="" name="Timestamp" nullable="0" physicalName="timestamp" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks>ISO timestamp with timezone</remarks>
+    </column>
+    <column id="COL64" populated="true" UUID="b7a9e45a-3925-498d-aafd-c5eed6cb0327" autoIncrement="false" autoIncrementSequenceName="weather_station_place_seq" defaultValue="" name="Place" nullable="0" physicalName="place" precision="50" primaryKeySeq="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL65" populated="true" UUID="683804b7-22bd-432e-a189-a402676d74a3" autoIncrement="false" autoIncrementSequenceName="other_observation_cloud_coverage_seq" defaultValue="" name="CloudCoverage" nullable="0" physicalName="cloud_coverage" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="6" userDefinedTypeUUID="7e55bcd0-7606-4153-b749-9c397f12c4d8" >
+     <remarks></remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB623" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB622" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB624" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX66" populated="true" UUID="b0a7006d-23f2-4937-96fe-ffa2f8196964" clustered="false" name="other_observation_pk" physicalName="other_observation_pk" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC67" populated="true" UUID="02c17a3c-f341-4a26-b27a-1bed44dc8af0" ascendingOrDescending="UNSPECIFIED" column-ref="COL63" name="Timestamp" physicalName="timestamp" />
+     <index-column id="IDC68" populated="true" UUID="a76f424c-4a3c-460b-acdd-0f29bb1f47fd" ascendingOrDescending="UNSPECIFIED" column-ref="COL64" name="Place" physicalName="place" />
+    </index>
+   </folder>
+  </table>
+  <relationships>
+   <relationship id="REL69" populated="true" UUID="b5bc80d5-c5d7-4ea7-9c3c-a921c0891108" deferrability="7" deleteRule="3" fk-table-ref="TAB62" fkCardinality="7" identifying="true" name="weather_station_other_observation_fk" physicalName="weather_station_other_observation_fk" pk-table-ref="TAB55" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP70" populated="true" UUID="9fd7818c-1844-44e6-85c3-50f83df13463" fk-column-ref="COL64" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL56" />
+   </relationship>
+  </relationships>
+ </target-database>
+ <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="false" target-schema="public"> </ddl-generator>
+ <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
+ <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
+ <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
+  <table-pane table-ref="TAB37" x="705" y="159" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB46" x="705" y="278" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB55" x="31" y="226" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB62" x="370" y="257" bgColor="0xc8b7ea" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-link relationship-ref="REL69" pkConnection="0.2823529411764706" fkConnection="0.5492957746478874" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="33"/>
+ </play-pen>
+ <critic-manager>
+  <critic-grouping platformType="Generic" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.PrimaryKeyCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.RelationshipMappingTypeCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.EmptyRelationshipCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.AlphaNumericNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.AlphaNumericSequenceNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SetDefaultOnColumnWithNoDefaultCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SetNullOnNonNullableColumnCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.DuplicateNameCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="DB2" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.DB2UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="H2" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.H2UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="HSQLDB" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.HSQLDBUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="MySQL" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLCommentCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLReservedWordsCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="Oracle" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OraclePhysicalNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OracleReservedWordsCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OracleUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="PostgreSQL" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.PostgreSQLReservedWordsCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServerUnsupportedFeaturesCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServerReservedWordsCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server 2000" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServer2000UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server 2005" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServer2005UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+ </critic-manager>
+ <profiles topNCount="10">
+  </profiles>
+  <olap>
+  </olap>
+  <olap-gui>
+  </olap-gui>
+</architect-project>
