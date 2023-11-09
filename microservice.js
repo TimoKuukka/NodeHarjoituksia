@@ -34,7 +34,7 @@ let lastFetchedDate = '1.1.2023'; // Initial value, in production use settings f
 let message = ''
 const logFile = 'dataOperationsLog'
 // Try to run an operation in 5 minute intervals from 3 to 4 PM
-cron.schedule('*/9 11 * * *', () => {
+cron.schedule('*/01 13 * * *', () => {
   try {
     let timestamp = new Date(); // Get the current timestamp
     let dateStr = timestamp.toLocaleDateString(); // Take date part of the timestamp
@@ -75,6 +75,7 @@ cron.schedule('*/9 11 * * *', () => {
             console.log(message);
             logger.add2log(message, logFile)
 
+
           })
           
         });
@@ -100,3 +101,11 @@ cron.schedule('*/9 11 * * *', () => {
     logger.add2log(message, logFile)
   }
 });
+
+
+// Get weather data from FMI
+// -------------------------
+
+// TODO: Get weather observations every hour + 5 min using scheduler
+
+// TODO: Get weather forecasts every hour + 5 min using scheduler
